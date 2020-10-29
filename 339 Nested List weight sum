@@ -1,0 +1,13 @@
+class Solution:
+    def depthSum(self, nestedList: List[NestedInteger]) -> int:
+        return self.recSum(nestedList, 1)
+    
+    def recSum(self, nestedList, depth):
+        sum = 0
+        for item in nestedList:
+            if item.isInteger():
+                sum += (item.getInteger() * depth)
+            else:
+                sum += self.recSum(item.getList(), depth + 1 )
+                
+        return sum
